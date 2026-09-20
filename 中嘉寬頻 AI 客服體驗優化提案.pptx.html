@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head><script data-bard-injected="true">(function(firebaseConfig, initialAuthToken, appId) {
+        window.__firebase_config = firebaseConfig;
+        window.__initial_auth_token = initialAuthToken;
+        window.__app_id = appId;
+            })("\n{\n  \"apiKey\": \"AIzaSyCqyCcs2R2e7AegGjvFAwG98wlamtbHvZY\",\n  \"authDomain\": \"bard-frontend.firebaseapp.com\",\n  \"projectId\": \"bard-frontend\",\n  \"storageBucket\": \"bard-frontend.firebasestorage.app\",\n  \"messagingSenderId\": \"175205271074\",\n  \"appId\": \"1:175205271074:web:2b7bd4d34d33bf38e6ec7b\"\n}\n","eyJhbGciOiJSUzI1NiIsImtpZCI6IjBmNDhjMDQxMTUxMmM3NTM4NjJkMmFkZWVmYjg0NTczZTAyZmFlMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1mYnN2Y0BiYXJkLWZyb250ZW5kLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwiYXVkIjoiaHR0cHM6Ly9pZGVudGl0eXRvb2xraXQuZ29vZ2xlYXBpcy5jb20vZ29vZ2xlLmlkZW50aXR5LmlkZW50aXR5dG9vbGtpdC52MS5JZGVudGl0eVRvb2xraXQiLCJ1aWQiOiIxNDM2MTY5NTE1OTk4NTc2NjE2OCIsImlzcyI6ImZpcmViYXNlLWFkbWluc2RrLWZic3ZjQGJhcmQtZnJvbnRlbmQuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJjbGFpbXMiOnsiYXBwSWQiOiJjX2FkYWIzNDQ0MDhhZDNkY2RfY25zX2hvbWVwbHVzX2FpX3Byb3Bvc2FsLmh0bWwtMzkwIn0sImV4cCI6MTc4MjgyMDQzMywiaWF0IjoxNzgyODE2ODMzLCJhbGciOiJSUzI1NiJ9.qlPfQdVRpOZKKTgftGMpEXTwnDfHitcS_uPoMa6DXfmvDmEoCzu-1TKsVTEKE9V0vxFkUOgX4vZk6U5DchKBJk90syFTWg_zwdoQA0D9J7UBcmscSE90bQe9QQ-lTrSVbEq37ibUzzkGTt9RmbP9UIFp9RH76BFImWqgYZLU23ZsBGuJaqXVW0OEQ08_uDPRKHIqnWkTop_wTFvkWF9upURQ-h13CXStDHjTz_VT4-AAWfgcTz4axo8IL9r30BgNu12o3zp12y2Xvp8TLMbGM5ynWdW-klixwbFNTlbLPqE7iucVNL8CeB2qaXrWfPQ0dPjCDgNl1EXx8Gq2Erbj9A","c_adab344408ad3dcd_cns_homeplus_ai_proposal.html-390")</script><script data-bard-injected="true">(function() {
+  document.addEventListener('mouseup', function(e) {
+    const selection = window.getSelection();
+    const selectedText = selection ? selection.toString().trim() : '';
+    if (selectedText.length > 0) {
+      const range = selection.getRangeAt(0);
+      // Clone the original user selection range before DOM manipulation. In browser DOM mechanics,
+      // removing temporary nodes from within an active selection invalidates and collapses the selection pointers.
+      const originalRange = range.cloneRange();
+      const rect = range.getBoundingClientRect();
+
+      const startTag = document.createTextNode('<selection-tag>');
+      const endTag = document.createTextNode('</selection-tag>');
+
+      const rangeStart = range.cloneRange();
+      rangeStart.collapse(true);
+
+      const rangeEnd = range.cloneRange();
+      rangeEnd.collapse(false);
+
+      // Insert end tag first to avoid shifting start boundary if they are in the same node.
+      rangeEnd.insertNode(endTag);
+      rangeStart.insertNode(startTag);
+
+      const fullTextWithTags = document.body.innerText;
+
+      if (startTag.parentNode) {
+        startTag.parentNode.removeChild(startTag);
+      }
+      if (endTag.parentNode) {
+        endTag.parentNode.removeChild(endTag);
+      }
+
+      // Explicitly restore the user's original selection range. Without this restoration, the selection collapses
+      // instantly, causing subsequent mouse movements or clicks to evaluate window.getSelection() as empty,
+      // which triggers a premature textSelectionCleared post-message that wipes out artifactTextWithTags in the store.
+      selection.removeAllRanges();
+      selection.addRange(originalRange);
+
+      window.parent.postMessage({
+        type: 'textSelection',
+        text: selectedText,
+        fullTextWithTags: fullTextWithTags,
+        rect: {
+          top: rect.top,
+          left: rect.left,
+          bottom: rect.bottom,
+          right: rect.right,
+          width: rect.width,
+          height: rect.height,
+        },
+      }, '*');
+    } else {
+      window.parent.postMessage({
+        type: 'textSelectionCleared',
+      }, '*');
+    }
+  }, true);
+})();</script><script data-bard-injected="true">(function(){'use strict';window.addEventListener("message",a=>{a.data&&a.data.type==="SUPPLEMENTAL_DATA_UPDATE"&&window.dispatchEvent(new CustomEvent("supplementaldataupdate",{detail:a.data.data}))});}).call(this);
+</script><script data-bard-injected="true">(function(){'use strict';var h=typeof Object.defineProperties=="function"?Object.defineProperty:function(a,b,d){if(a==Array.prototype||a==Object.prototype)return a;a[b]=d.value;return a};function l(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var b=0;b<a.length;++b){var d=a[b];if(d&&d.Math==Math)return d}throw Error("Cannot find global object");}var n=l(this);
+function p(a,b){if(b)a:{var d=n;a=a.split(".");for(var c=0;c<a.length-1;c++){var e=a[c];if(!(e in d))break a;d=d[e]}a=a[a.length-1];c=d[a];b=b(c);b!=c&&b!=null&&h(d,a,{configurable:!0,writable:!0,value:b})}}function r(a){function b(c){return a.next(c)}function d(c){return a.throw(c)}return new Promise(function(c,e){function f(g){g.done?c(g.value):Promise.resolve(g.value).then(b,d).then(f,e)}f(a.next())})}function t(a){return r(a())}
+p("Object.values",function(a){return a?a:function(b){var d=[],c;for(c in b)Object.prototype.hasOwnProperty.call(b,c)&&d.push(b[c]);return d}});p("Array.prototype.includes",function(a){return a?a:function(b,d){var c=this;c instanceof String&&(c=String(c));var e=c.length;d=d||0;for(d<0&&(d=Math.max(d+e,0));d<e;d++){var f=c[d];if(f===b||Object.is(f,b))return!0}return!1}});/*
+
+ MIT License
+
+ Copyright (c) 2017-2023 W.Y.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+*/
+function u(a,b){var d=a.style;b.backgroundColor&&(d.backgroundColor=b.backgroundColor);b.width&&(d.width=`${b.width}px`);b.height&&(d.height=`${b.height}px`);var c=b.style;c!=null&&Object.keys(c).forEach(e=>{d[e]=c[e]})};var v=(()=>{var a=0;return()=>{a+=1;return`u${`0000${(Math.random()*1679616<<0).toString(36)}`.slice(-4)}${a}`}})();function w(a){var b=[];for(let d=0,c=a.length;d<c;d++)b.push(a[d]);return b}let x=null;function y(a={}){return x?x:a.l?x=a.l:x=w(window.getComputedStyle(document.documentElement))}function z(a,b){return(a=(a.ownerDocument.defaultView||window).getComputedStyle(a).getPropertyValue(b))?parseFloat(a.replace("px","")):0}
+function A(a,b={}){var d;if(!(d=b.width)){d=z(a,"border-left-width");var c=z(a,"border-right-width");d=a.clientWidth+d+c}(b=b.height)||(b=z(a,"border-top-width"),c=z(a,"border-bottom-width"),b=a.clientHeight+b+c);return{width:d,height:b}}function B(a){return new Promise((b,d)=>{var c=new Image;c.onload=()=>{c.decode().then(()=>{requestAnimationFrame(()=>b(c))})};c.onerror=d;c.crossOrigin="anonymous";c.decoding="async";c.src=a})}
+function C(a){return t(function*(){return Promise.resolve().then(()=>(new XMLSerializer).serializeToString(a)).then(encodeURIComponent).then(b=>`data:image/svg+xml;charset=utf-8,${b}`)})}
+function D(a,b,d){return t(function*(){var c=document.createElementNS("http://www.w3.org/2000/svg","svg"),e=document.createElementNS("http://www.w3.org/2000/svg","foreignObject");c.setAttribute("width",`${b}`);c.setAttribute("height",`${d}`);c.setAttribute("viewBox",`0 0 ${b} ${d}`);e.setAttribute("width","100%");e.setAttribute("height","100%");e.setAttribute("x","0");e.setAttribute("y","0");e.setAttribute("externalResourcesRequired","true");c.appendChild(e);e.appendChild(a);return C(c)})}
+var E=(a,b)=>{if(a instanceof b)return!0;a=Object.getPrototypeOf(a);return a===null?!1:a.constructor.name===b.name||E(a,b)};function F(a,b){return y(b).map(d=>{var c=a.getPropertyValue(d),e=a.getPropertyPriority(d);return`${d}: ${c}${e?" !important":""};`}).join(" ")}
+function G(a,b,d,c){a=window.getComputedStyle(a,d);var e=a.getPropertyValue("content");if(e!==""&&e!=="none"){var f=v();try{b.className=`${b.className} ${f}`}catch(k){return}e=document.createElement("style");var g=e.appendChild;d=`.${f}:${d}`;a.cssText?(c=a.getPropertyValue("content"),c=`${a.cssText} content: '${c.replace(/'|"/g,"")}';`):c=F(a,c);g.call(e,document.createTextNode(`${d}{${c}}`));b.appendChild(e)}};function H(a){return a.search(/^(data:)/)!==-1}function I(a,b,d){return t(function*(){var c=yield fetch(a,b);if(c.status===404)throw Error(`Resource "${c.url}" not found`);var e=yield c.blob();return new Promise((f,g)=>{var k=new FileReader;k.onerror=g;k.onloadend=()=>{try{f(d({o:c,result:k.result}))}catch(m){g(m)}};k.readAsDataURL(e)})})}const J={};function K(a,b,d){var c=a.replace(/\?.*/,"");d&&(c=a);/ttf|otf|eot|woff2?/i.test(c)&&(c=c.replace(/.*\//,""));return b?`[${b}]${c}`:c}
+function L(a,b,d){return t(function*(){var c=K(a,b,d.C);if(J[c]!=null)return J[c];d.u&&(a+=(/\?/.test(a)?"&":"?")+(new Date).getTime());try{let f=yield I(a,d.i,({o:g,result:k})=>{b||(b=g.headers.get("Content-Type")||"");return k.split(/,/)[1]});var e=`data:${b};base64,${f}`}catch(f){e=d.B||""}return J[c]=e})};const M={P:"application/font-woff",R:"application/font-woff",N:"application/font-truetype",v:"application/vnd.ms-fontobject",H:"image/png",F:"image/jpeg",D:"image/jpeg",A:"image/gif",M:"image/tiff",L:"image/svg+xml",O:"image/webp"};function N(a){return(a=/\.([^./]*?)$/g.exec(a))?a[1]:""};function O(a){return t(function*(){var b=a.toDataURL();return b==="data:,"?a.cloneNode(!1):B(b)})}function aa(a,b){return t(function*(){if(a.currentSrc){var d=document.createElement("canvas");let c=d.getContext("2d");d.width=a.clientWidth;d.height=a.clientHeight;c==null||c.drawImage(a,0,0,d.width,d.height);d=d.toDataURL();return B(d)}d=a.poster;d=yield L(d,M[N(d).toLowerCase()]||"",b);return B(d)})}
+function ba(a,b){return t(function*(){try{let d;if(a==null?0:(d=a.contentDocument)==null?0:d.body)return yield P(a.contentDocument.body,b,!0)}catch(d){}return a.cloneNode(!1)})}function ca(a,b){return t(function*(){return E(a,HTMLCanvasElement)?O(a):E(a,HTMLVideoElement)?aa(a,b):E(a,HTMLIFrameElement)?ba(a,b):a.cloneNode(a.tagName!=null&&a.tagName.toUpperCase()==="SVG")})}
+function da(a,b,d){return t(function*(){if(b.tagName!=null&&b.tagName.toUpperCase()==="SVG")return b;var c=[];if(a.tagName!=null&&a.tagName.toUpperCase()==="SLOT"&&a.assignedNodes)c=w(a.assignedNodes());else{let e;if(E(a,HTMLIFrameElement)&&((e=a.contentDocument)==null?0:e.body))c=w(a.contentDocument.body.childNodes);else{let f;c=w(((f=a.shadowRoot)!=null?f:a).childNodes)}}if(c.length===0||E(a,HTMLVideoElement))return b;yield c.reduce((e,f)=>e.then(()=>P(f,d)).then(g=>{g&&b.appendChild(g)}),Promise.resolve());
+return b})}function ea(a,b,d){var c=b.style;if(c){var e=window.getComputedStyle(a);e.cssText?(c.cssText=e.cssText,c.transformOrigin=e.transformOrigin):y(d).forEach(f=>{var g=e.getPropertyValue(f);f==="font-size"&&g.endsWith("px")&&(g=`${Math.floor(parseFloat(g.substring(0,g.length-2)))-.1}px`);E(a,HTMLIFrameElement)&&f==="display"&&g==="inline"&&(g="block");f==="d"&&b.getAttribute("d")&&(g=`path(${b.getAttribute("d")})`);c.setProperty(f,g,e.getPropertyPriority(f))})}}
+function fa(a,b){E(a,HTMLSelectElement)&&(b=Array.from(b.children).find(d=>a.value===d.getAttribute("value")))&&b.setAttribute("selected","")}
+function ha(a,b){return t(function*(){var d=a.querySelectorAll?a.querySelectorAll("use"):[];if(d.length===0)return a;var c={};for(var e=0;e<d.length;e++){var f=d[e].getAttribute("xlink:href");if(f){let g=document.querySelector(f);a.querySelector(f)||!g||c[f]||(c[f]=yield P(g,b,!0))}}d=Object.values(c);if(d.length){c=document.createElementNS("http://www.w3.org/1999/xhtml","svg");c.setAttribute("xmlns","http://www.w3.org/1999/xhtml");c.style.position="absolute";c.style.width="0";c.style.height="0";
+c.style.overflow="hidden";c.style.display="none";e=document.createElementNS("http://www.w3.org/1999/xhtml","defs");c.appendChild(e);for(f=0;f<d.length;f++)e.appendChild(d[f]);a.appendChild(c)}return a})}
+function P(a,b,d){return t(function*(){return d||!b.filter||b.filter(a)?Promise.resolve(a).then(c=>ca(c,b)).then(c=>da(a,c,b)).then(c=>{E(c,Element)&&(ea(a,c,b),G(a,c,":before",b),G(a,c,":after",b),E(a,HTMLTextAreaElement)&&(c.textContent=a.value),E(a,HTMLInputElement)&&c.setAttribute("value",a.value),fa(a,c));return c}).then(c=>ha(c,b)):null})};const Q=/url\((['"]?)([^'"]+?)\1\)/g,ia=/url\([^)]+\)\s*format\((["']?)([^"']+)\1\)/g,ja=/src:\s*(?:url\([^)]+\)\s*format\([^)]+\)[,;]\s*)+/g;function ka(a){var b=[];a.replace(Q,(d,c,e)=>{b.push(e);return d});return b.filter(d=>!H(d))}
+function la(a,b,d,c){return t(function*(){try{let e=d?(new URL(b,d||void 0)).toString():b,f;f=yield L(e,M[N(b).toLowerCase()]||"",c);return a.replace(new RegExp(`(url\\(['"]?)(${b.replace(/([.*+?^${}()|\[\]\/\\])/g,"\\$1")})(['"]?\\))`,"g"),`$1${f}$3`)}catch(e){}return a})}function ma(a,{I:b}){return b?a.replace(ja,d=>{for(;;){let [c,,e]=ia.exec(d)||[];if(!e)return"";if(e===b)return`src: ${c};`}}):a}
+function R(a,b,d){return t(function*(){if(a.search(Q)===-1)return a;var c=ma(a,d);return ka(c).reduce((e,f)=>e.then(g=>la(g,f,b,d)),Promise.resolve(c))})};function S(a,b,d){return t(function*(){var c,e=(c=b.style)==null?void 0:c.getPropertyValue(a);return e?(c=yield R(e,null,d),b.style.setProperty(a,c,b.style.getPropertyPriority(a)),!0):!1})}function na(a,b){return t(function*(){(yield S("background",a,b))||(yield S("background-image",a,b));(yield S("mask",a,b))||(yield S("-webkit-mask",a,b))||(yield S("mask-image",a,b))||(yield S("-webkit-mask-image",a,b))})}
+function oa(a,b){return t(function*(){var d=E(a,HTMLImageElement);if(d&&!H(a.src)||E(a,SVGImageElement)&&!H(a.href.baseVal)){var c=d?a.src:a.href.baseVal,e=yield L(c,M[N(c).toLowerCase()]||"",b);yield new Promise((f,g)=>{a.onload=f;a.onerror=b.m?(...k)=>{try{f(b.m(...k))}catch(m){g(m)}}:g;a.decode&&(a.decode=f);a.loading==="lazy"&&(a.loading="eager");d?(a.srcset="",a.src=e):a.href.baseVal=e})}})}
+function pa(a,b){return t(function*(){var d=w(a.childNodes).map(c=>T(c,b));yield Promise.all(d).then(()=>a)})}function T(a,b){return t(function*(){E(a,Element)&&(yield na(a,b),yield oa(a,b),yield pa(a,b))})};const U={};function V(a){return t(function*(){var b=U[a];if(b!=null)return b;b=yield(yield fetch(a)).text();b={url:a,cssText:b};return U[a]=b})}function W(a,b){return t(function*(){var d=a.cssText,c=/url\(["']?([^"')]+)["']?\)/g,e=(d.match(/url\([^)]+\)/g)||[]).map(f=>t(function*(){var g=f.replace(c,"$1");g.startsWith("https://")||(g=(new URL(g,a.url)).href);return I(g,b.i,({result:k})=>{d=d.replace(f,`url(${k})`);return[f,k]})}));return Promise.all(e).then(()=>d)})}
+function X(a){if(a==null)return[];var b=[];a=a.replace(/(\/\*[\s\S]*?\*\/)/gi,"");for(var d=RegExp("((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})","gi");;){var c=d.exec(a);if(c===null)break;b.push(c[0])}a=a.replace(d,"");d=/@import[\s\S]*?url\([^)]*\)[\s\S]*?;/gi;for(c=RegExp("((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})","gi");;){let e=d.exec(a);if(e===null)if(e=c.exec(a),e===null)break;else d.lastIndex=c.lastIndex;else c.lastIndex=
+d.lastIndex;b.push(e[0])}return b}
+function qa(a,b){return t(function*(){var d=[],c=[];a.forEach(e=>{if("cssRules"in e)try{w(e.cssRules||[]).forEach((f,g)=>{if(f.type===CSSRule.IMPORT_RULE){let k=g+1;f=V(f.href).then(m=>W(m,b)).then(m=>X(m).forEach(q=>{try{e.insertRule(q,q.startsWith("@import")?k+=1:e.cssRules.length)}catch(Da){}})).catch(()=>{});c.push(f)}})}catch(f){let g=a.find(k=>k.href==null)||document.styleSheets[0];e.href!=null&&c.push(V(e.href).then(k=>W(k,b)).then(k=>X(k).forEach(m=>{g.insertRule(m,g.cssRules.length)})).catch(()=>
+{}))}});return Promise.all(c).then(()=>{a.forEach(e=>{if("cssRules"in e)try{w(e.cssRules||[]).forEach(f=>{d.push(f)})}catch(f){}});return d})})}function ra(a){return a.filter(b=>b.type===CSSRule.FONT_FACE_RULE).filter(b=>b.style.getPropertyValue("src").search(Q)!==-1)}function sa(a,b){return t(function*(){if(a.ownerDocument==null)throw Error("Provided element is not within a Document");var d=w(a.ownerDocument.styleSheets);d=yield qa(d,b);return ra(d)})}
+function ta(a){function b(c){(c.style.fontFamily||getComputedStyle(c).fontFamily).split(",").forEach(e=>{d.add(e.trim().replace(/["']/g,""))});Array.from(c.children).forEach(e=>{e instanceof HTMLElement&&b(e)})}var d=new Set;b(a);return d}function ua(a,b){return t(function*(){var d=yield sa(a,b),c=ta(a);return(yield Promise.all(d.filter(e=>c.has(e.style.fontFamily.trim().replace(/["']/g,""))).map(e=>R(e.cssText,e.parentStyleSheet?e.parentStyleSheet.href:null,b)))).join("\n")})}
+function va(a,b){return t(function*(){var d=b.j!=null?b.j:b.K?null:yield ua(a,b);if(d){let c=document.createElement("style");c.appendChild(document.createTextNode(d));a.firstChild?a.insertBefore(c,a.firstChild):a.appendChild(c)}})};function wa(a,b={}){return t(function*(){var {width:d,height:c}=A(a,b),e=yield P(a,b,!0);yield va(e,b);yield T(e,b);u(e,b);return yield D(e,d,c)})}
+function xa(a,b={}){return t(function*(){var {width:d,height:c}=A(a,b),e=yield wa(a,b);e=yield B(e);var f=document.createElement("canvas"),g=f.getContext("2d"),k=b.G||window.devicePixelRatio||1,m=b.h||d,q=b.g||c;f.width=m*k;f.height=q*k;!b.J&&(f.width>16384||f.height>16384)&&(f.width>16384&&f.height>16384?f.width>f.height?(f.height*=16384/f.width,f.width=16384):(f.width*=16384/f.height,f.height=16384):f.width>16384?(f.height*=16384/f.width,f.width=16384):(f.width*=16384/f.height,f.height=16384));
+f.style.width=`${m}`;f.style.height=`${q}`;b.backgroundColor&&(g.fillStyle=b.backgroundColor,g.fillRect(0,0,f.width,f.height));g.drawImage(e,0,0,f.width,f.height);return f})}function ya(a,b={}){return t(function*(){return(yield xa(a,b)).toDataURL()})};const za=["gemini.google.com","corp.google.com","proxy.googlers.com"];function Y(){return document.body.querySelectorAll('[class*="animate"]').length>0}function Z(a){return t(function*(){try{return yield ya(a,{h:a.offsetWidth,g:a.offsetHeight})}catch(d){var b=a.offsetHeight;let c=document.createElement("canvas");c.width=a.offsetWidth;c.height=b;return c.toDataURL("image/png")}})}
+function Aa(){return t(function*(){var a=document.body.offsetWidth,b=document.body.offsetHeight,d=document.body.cloneNode(!0);d.querySelectorAll('[class*="animate"]').forEach(c=>{c.classList.remove(...Array.from(c.classList).filter(e=>e.startsWith("animate")))});d.style.width=`${a}px`;d.style.height=`${b}px`;return d})}
+function Ba(a){return t(function*(){var b=document.body;if(Y()){var d=yield Aa();b=d;document.body.appendChild(d)}d=yield Z(b);Y()&&document.body.removeChild(b);window.parent.postMessage({type:"SEND_SCREENSHOT",image:d,topOffset:document.documentElement.scrollTop},a.origin)})}function Ca(a){return t(function*(){var b={type:"SEND_SCREENSHOT_FOR_DATA_VISUALIZATION",image:yield Z(document.body),topOffset:0};window.parent.postMessage(b,a.origin)})}
+window.addEventListener("message",a=>t(function*(){if(za.some(d=>a.origin.includes(d))){var b=a.data;b&&(b.type==="MAKE_SCREENSHOT"&&(yield Ba(a)),b.type==="MAKE_SCREENSHOT_FOR_DATA_VISUALIZATION"&&(yield Ca(a)))}}));
+})();</script><script data-bard-injected="true">(function() {
+  // Ensure this script is executed only once
+  if (window.firebaseAuthBridgeScriptLoaded) {
+    return;
+  }
+  window.firebaseAuthBridgeScriptLoaded = true;
+
+  let nextTokenPromiseId = 0;
+
+  // Stores { resolve, reject } for ongoing token requests
+  const pendingTokenPromises = {};
+
+  // Listen for messages from the Host Application
+  window.addEventListener('message', function(event) {
+
+    const messageData = event.data;
+
+  if (messageData && messageData.type === 'RESOLVE_NEW_FIREBASE_TOKEN') {
+      const { success, token, error, promiseId } = messageData ?? {};
+      if (pendingTokenPromises[promiseId]) {
+        if (success) {
+          pendingTokenPromises[promiseId].resolve(token);
+        } else {
+          pendingTokenPromises[promiseId].reject(new Error(error || 'Token refresh failed from host.'));
+        }
+        delete pendingTokenPromises[promiseId];
+      }
+    }
+  });
+
+  // Expose a function for the Generated App to request a new Firebase token
+  window.requestNewFirebaseToken = function() {
+    const currentPromiseId = nextTokenPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingTokenPromises[currentPromiseId] = { resolve, reject };
+    });
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'REQUEST_NEW_FIREBASE_TOKEN',
+        promiseId: currentPromiseId
+      }, '*');
+    } else {
+      pendingTokenPromises[currentPromiseId].reject(new Error('No parent window to request token from.'));
+      delete pendingTokenPromises[currentPromiseId];
+    }
+    return promise;
+  };
+})();</script><script data-bard-injected="true">
+let realOriginalGetUserMedia = null;
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  realOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+}
+
+(function() {
+  if (navigator.mediaDevices && navigator.mediaDevices.__proto__) {
+    try {
+      Object.defineProperty(navigator.mediaDevices.__proto__, 'getUserMedia', {
+        get: function() {
+          return undefined; // Or throw an error
+        },
+        configurable: false
+      });
+    } catch (error) {
+      console.error("Error defining prototype getter:", error);
+    }
+  }
+})();
+
+(function() {
+  const pendingMediaResolvers = {};
+  let nextMediaPromiseId = 0;
+
+  function requestMediaPermissions(constraints) {
+    const mediaPromiseId = nextMediaPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingMediaResolvers[mediaPromiseId] = (granted) => {
+        delete pendingMediaResolvers[mediaPromiseId];
+        resolve(granted);
+      };
+    });
+
+    window.parent.postMessage({
+      type: 'requestMediaPermission',
+      constraints: constraints,
+      promiseId: mediaPromiseId,
+    }, '*');
+
+    return promise;
+  }
+
+  let originalGetUserMedia = realOriginalGetUserMedia;
+
+  function interceptGetUserMedia() {
+    if (navigator.mediaDevices) {
+      Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+        value: function(constraints) {
+          return requestMediaPermissions(constraints).then((granted) => {
+            if (granted) {
+              if (originalGetUserMedia) {
+                return originalGetUserMedia(constraints);
+              } else {
+                throw new Error("Original getUserMedia not available.");
+              }
+            } else {
+              throw new DOMException('Permission denied', 'NotAllowedError');
+            }
+          });
+        },
+        writable: false,
+        configurable: false
+      });
+    }
+  }
+
+  interceptGetUserMedia();
+
+  const observer = new MutationObserver(function(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'reconfigured' && mutation.name === 'getUserMedia' && mutation.object === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'attributes' && mutation.attributeName === 'getUserMedia' && mutation.target === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'childList' && mutation.addedNodes) {
+        mutation.addedNodes.forEach(node => {
+          if (node === navigator.mediaDevices) {
+            interceptGetUserMedia();
+          }
+        });
+      }
+    }
+  });
+
+  function interceptSpeechRecognition() {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+      return;
+    }
+
+    const OriginalSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const SpeechRecognitionWrapper = function(...args) {
+      const recognizer = new OriginalSpeechRecognition(...args);
+      const originalStart = recognizer.start.bind(recognizer);
+
+      recognizer.start = function() {
+        requestMediaPermissions({ audio: true }).then(granted => {
+          if (granted) {
+            originalStart();
+          } else {
+            const errorEvent = new SpeechRecognitionErrorEvent('error');
+            errorEvent.error = 'not-allowed'; // This is the standard error for permission denial.
+            recognizer.dispatchEvent(errorEvent);
+          }
+        });
+      };
+
+      return recognizer;
+    };
+
+    SpeechRecognitionWrapper.prototype = OriginalSpeechRecognition.prototype;
+    SpeechRecognitionWrapper.prototype.constructor = SpeechRecognitionWrapper;
+
+    if (window.SpeechRecognition) {
+      window.SpeechRecognition = SpeechRecognitionWrapper;
+    }
+    if (window.webkitSpeechRecognition) {
+      window.webkitSpeechRecognition = SpeechRecognitionWrapper;
+    }
+  }
+
+  interceptSpeechRecognition();
+
+  window.addEventListener('message', function(event) {
+    if (event.data) {
+      if (event.data.type === 'resolveMediaPermission') {
+        const { promiseId, granted } = event.data;
+        if (pendingMediaResolvers[promiseId]) {
+          pendingMediaResolvers[promiseId](granted);
+        }
+      }
+    }
+  });
+
+})();</script><script ws-interception-config="{&quot;parentOrigin&quot;:&quot;https://gemini.google.com&quot;,&quot;proxiedDomains&quot;:[]}" data-bard-injected="true">(function(){'use strict';var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,d,e){if(b==Array.prototype||b==Object.prototype)return b;b[d]=e.value;return b};function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var d=0;d<b.length;++d){var e=b[d];if(e&&e.Math==Math)return e}throw Error("Cannot find global object");}var w=v(this);
+function y(b,d){if(d)a:{var e=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var k=b[h];if(!(k in e))break a;e=e[k]}b=b[b.length-1];h=e[b];d=d(h);d!=h&&d!=null&&u(e,b,{configurable:!0,writable:!0,value:d})}}function z(b){function d(h){return b.next(h)}function e(h){return b.throw(h)}return new Promise(function(h,k){function m(n){n.done?h(n.value):Promise.resolve(n.value).then(d,e).then(m,k)}m(b.next())})}y("globalThis",function(b){return b||w});/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+function A(b,d){function e(){}e.prototype=d.prototype;b.i=d.prototype;b.prototype=new e;b.prototype.constructor=b;b.g=function(h,k,m){for(var n=Array(arguments.length-2),p=2;p<arguments.length;p++)n[p-2]=arguments[p];return d.prototype[k].apply(h,n)}};function B(b,d,e="*"){function h(a){if(typeof a==="string")return F.encode(a).buffer;if(a instanceof ArrayBuffer)return a.slice(0);if(ArrayBuffer.isView(a))return a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength);throw Error("Invalid data type");}function k(a){a=h(a);var f={type:"send",data:new Uint8Array(a)},g;(g=r)==null||g.postMessage(f,[a])}function m(){if(!r)throw Error("Data port not captured yet.");r.onmessage=a=>{if(a.data.type==="message"){a=new MessageEvent("message",{data:G.decode(a.data.data)});
+let f;(f=c.onmessage)==null||f.call(c,a);c.dispatchEvent(a)}}}function n(){if(!t)throw Error("Control port not captured yet.");t.onmessage=a=>{switch(a.data.type){case "open":l=1;var f=new Event("open"),g;(g=c.onopen)==null||g.call(c,f);c.dispatchEvent(f);q.forEach(H=>{k(H)});q=[];break;case "close":g=a.data;l=3;g=new CloseEvent("close",{code:g.code,reason:g.reason,wasClean:g.wasClean});(f=c.onclose)==null||f.call(c,g);c.dispatchEvent(g);break;case "error":l=3;f=new Event("error");let x;(x=c.onerror)==
+null||x.call(c,f);c.dispatchEvent(f)}}}function p(a){return z(function*(){var f=new MessageChannel;t=f.port1;var g=new MessageChannel;r=g.port1;n();m();window.parent.postMessage({type:"websocket_open",portOrdering:["control","data"],url:b,protocols:a||[],connectionId:I},e,[f.port2,g.port2])}())}var c=Reflect.construct(EventTarget,[],new.target);c.CONNECTING=0;c.OPEN=1;c.CLOSING=2;c.CLOSED=3;c.url=b;c.binaryType="arraybuffer";c.protocol="";c.h="";var l=0,t=null,r=null,q=[],F=new TextEncoder,G=new TextDecoder;
+c.onopen=null;c.onmessage=null;c.onclose=null;c.onerror=null;Object.defineProperty(c,"readyState",{get:()=>l,enumerable:!0,configurable:!0});Object.defineProperty(c,"bufferedAmount",{get:()=>{var a=0;q.forEach(f=>{a+=typeof f==="string"?f.length:f.byteLength});return a},enumerable:!0,configurable:!0});var I=function(){var a;return((a=globalThis.crypto)==null?0:a.randomUUID)?globalThis.crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,f=>{var g=Math.random()*16|0;return(f===
+"x"?g:g&3|8).toString(16)})}();c.send=a=>{if(l===1)a instanceof Blob?a.arrayBuffer().then(f=>{k(f)}):k(a);else if(l===0)if(typeof a==="string")q.push(a);else if(a instanceof ArrayBuffer||ArrayBuffer.isView(a))q.push(h(a));else throw Error("Sending Blob is not supported before the connection is open.");else console.debug("WebSocket send called in CLOSING or CLOSED state; ignored.")};c.close=(a=1E3,f="")=>{if(l!==2&&l!==3){l=2;a={type:"close",code:a,reason:f,wasClean:a===1E3};var g;(g=t)==null||g.postMessage(a)}};
+Promise.resolve().then(()=>p(d));return c}A(B,EventTarget);var C=document.currentScript,D=C==null?void 0:C.getAttribute("ws-interception-config");if(!D)throw Error("WebSocket Interceptor: Missing ws-interception-config attribute in the script tag.");var E=JSON.parse(D);if(!E.parentOrigin||typeof E.parentOrigin!=="string")throw Error("WebSocket Interceptor: Invalid parentOrigin in ws-interception-config");
+(function(b){var d=Object.getOwnPropertyDescriptor(window,"WebSocket");if(!d||d.writable||d.configurable)d=Object.assign(function(e,h){try{let k=(new URL(e)).hostname;if(b.proxiedDomains.some(m=>k===m||k.endsWith(`.${m}`)))return new B(e,h,b.parentOrigin)}catch(k){throw window.parent.postMessage({type:"websocket_blocked",url:e,reason:"blocked_invalid_url"},b.parentOrigin),new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");}window.parent.postMessage({type:"websocket_blocked",
+url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");},{CONNECTING:0,OPEN:1,CLOSING:2,CLOSED:3}),Object.defineProperty(window,"WebSocket",{value:d,writable:!1,configurable:!1})})({proxiedDomains:E.proxiedDomains||[],parentOrigin:E.parentOrigin});}).call(this);
+</script><script data-bard-injected="true">((function(modelInformation) {
+  const originalFetch = window.fetch;
+  // TODO: b/421908508 - Move these out of the script and match all generative AI model calls.
+  let googleLlmBaseApiUrls = [
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':streamGenerateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageEditModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageTransformModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.ttsModelName + ':generateContent',
+  ];
+  modelInformation.deprecatedTextModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+    );
+  });
+  modelInformation.deprecatedImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predict',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predictLongRunning',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedGenerateImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedImageTransformModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+
+  const pendingFetchResolvers = {};
+  let nextPromiseId = 0;
+
+  function handleStringInput(input, optionsArgument) {
+    const actualUrl = input;
+    const fetchCallArgs = [actualUrl, optionsArgument];
+    const effectiveOptions = optionsArgument || {};
+    const bodyForApiKeyCheck = effectiveOptions.body;
+    const bodyForPostMessage = effectiveOptions.body;
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  function handleRequestInput(input, optionsArgument) {
+    const actualUrl = input.url;
+    const fetchCallArgs = [input, optionsArgument];
+    const effectiveOptions = { method: input.method, headers: new Headers(input.headers) };
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (optionsArgument) {
+      if (optionsArgument.method) effectiveOptions.method = optionsArgument.method;
+      if (optionsArgument.headers) effectiveOptions.headers = new Headers(optionsArgument.headers);
+      if ('body' in optionsArgument) {
+        bodyForApiKeyCheck = optionsArgument.body;
+        bodyForPostMessage = optionsArgument.body;
+      } else {
+        bodyForApiKeyCheck = undefined;
+        bodyForPostMessage = input.body;
+      }
+    } else {
+      bodyForApiKeyCheck = undefined;
+      bodyForPostMessage = input.body;
+    }
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  window.fetch = function(input, optionsArgument) {
+    let actualUrl;
+    let fetchCallArgs;
+    let effectiveOptions = {};
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (typeof input === 'string') {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleStringInput(input, optionsArgument));
+    } else if (input instanceof Request) {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleRequestInput(input, optionsArgument));
+    } else {
+      return originalFetch.apply(window, [input, optionsArgument]);
+    }
+
+    effectiveOptions.method = effectiveOptions.method || 'GET';
+    if (!effectiveOptions.headers) {
+      effectiveOptions.headers = new Headers();
+    }
+
+
+    if (typeof actualUrl === 'string' && googleLlmBaseApiUrls.some((url) => actualUrl.startsWith(url))) {
+      let apiKeyIsNull = true;
+
+      const regex = new RegExp("models/([^:]+)");
+      const modelNameMatch = actualUrl.match(regex);
+      const modelName = modelNameMatch ? modelNameMatch[1] : 'unspecified';
+
+
+      try {
+        const urlObject = new URL(actualUrl);  // Use URL object for robust parsing
+        const apiKeyParam = urlObject.searchParams.get('key');
+        if (apiKeyParam) {
+          apiKeyIsNull = false;
+        }
+      } catch (e) {
+        // Continue checks even if URL parsing fails
+      }
+
+      if (apiKeyIsNull && effectiveOptions.headers) {
+        const h = new Headers(effectiveOptions.headers);
+        const apiKeyHeaderValue = h.get('X-API-Key') || h.get('x-api-key');
+        if (apiKeyHeaderValue) {
+          apiKeyIsNull = false;
+          return originalFetch.apply(window, fetchCallArgs);
+        }
+      }
+
+      if (apiKeyIsNull && effectiveOptions.method && ['POST', 'PUT', 'PATCH'].includes(effectiveOptions.method.toUpperCase()) && typeof bodyForApiKeyCheck === 'string') {
+        try {
+          const bodyData = JSON.parse(bodyForApiKeyCheck);
+          if (bodyData && bodyData.apiKey) {
+            apiKeyIsNull = false;
+            return originalFetch.apply(window, fetchCallArgs);
+          }
+        } catch (e) {
+          // Ignore JSON parsing errors
+        }
+      }
+
+      if(apiKeyIsNull) {
+        const promiseId = nextPromiseId++;
+        const promise = new Promise((resolve) => {
+          pendingFetchResolvers[promiseId] = (resolvedResponse) => {
+            delete pendingFetchResolvers[promiseId];
+            resolve(resolvedResponse);
+          };
+        });
+
+        let serializedBodyForPostMessage;
+        if (typeof bodyForPostMessage === 'string' || bodyForPostMessage == null) {
+            serializedBodyForPostMessage = bodyForPostMessage;
+        } else if (bodyForPostMessage instanceof ReadableStream) {
+            serializedBodyForPostMessage = null;
+        } else {
+            try {
+                serializedBodyForPostMessage = JSON.stringify(bodyForPostMessage);
+            } catch (e) {
+                serializedBodyForPostMessage = null;
+            }
+        }
+
+        const messageOptions = {
+            method: effectiveOptions.method,
+            headers: Object.fromEntries(new Headers(effectiveOptions.headers).entries()),
+            body: serializedBodyForPostMessage
+        };
+
+        window.parent.postMessage({
+          type: 'requestFetch',
+          url: actualUrl,
+          modelName: modelName,
+          options: messageOptions,
+          promiseId: promiseId,
+        }, '*');
+
+        return promise;
+      }
+      return originalFetch.apply(window, fetchCallArgs);
+    }
+    return originalFetch.apply(window, fetchCallArgs);
+  };
+
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'resolveFetch') {
+      const { promiseId, response } = event.data;
+      if (pendingFetchResolvers[promiseId]) {
+        try {
+          const reconstructedResponse = new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: new Headers(response.headers),
+          });
+          pendingFetchResolvers[promiseId](reconstructedResponse);
+        } catch (error) {
+          pendingFetchResolvers[promiseId](new Response(null, { status: 500, statusText: "Interceptor Response Reconstruction Error" }));
+        }
+      }
+    }
+  });
+
+}))({"textModelName":"gemini-3-flash-preview","imageModelName":"imagen-4.0-generate-001","imageEditModelName":"gemini-3.1-flash-image","imageTransformModelName":"gemini-3-pro-image","videoModelName":"veo-2.0-generate-001","ttsModelName":"gemini-2.5-flash-preview-tts","deprecatedTextModelNames":["gemini-2.0-flash","gemini-2.5-flash","gemini-2.5-flash-preview-04-17","gemini-2.5-flash-preview-05-20","gemini-2.5-flash-preview-09-2025"],"deprecatedImageModelNames":["imagen-3.0-generate-001","imagen-3.0-generate-002"],"deprecatedGenerateImageModelNames":["gemini-2.5-flash-image-preview","gemini-2.5-flash-image","gemini-3.1-flash-image-preview"],"deprecatedImageTransformModelNames":["gemini-3-pro-image-preview-11-2025"]})</script><script data-bard-injected="true">(function(){'use strict';function a(){window.parent.postMessage({type:"interaction"},"*")}window.addEventListener("click",a,{capture:!0,passive:!0});window.addEventListener("touchstart",a,{capture:!0,passive:!0});window.addEventListener("keydown",a,{capture:!0,passive:!0});}).call(this);
+</script><script data-bard-injected="true">(function() {
+  const originalConsoleLog = console.log;
+  const originalConsoleError = console.error;
+
+    /**
+   * Normalizes an error event or a promise rejection reason into a structured error object.
+   * @param {*} errorEventOrReason The error object or reason.
+   * @return {object} Structured error data { message, name, stack }.
+   */
+  function getErrorObject(errorEventOrReason) {
+    if (errorEventOrReason instanceof Error) {
+      return {
+        message: errorEventOrReason.message,
+        name: errorEventOrReason.name,
+        stack: errorEventOrReason.stack,
+      };
+    }
+    // Fallback for non-Error objects.
+    try {
+      return {
+        message: JSON.stringify(errorEventOrReason),
+        name: 'UnknownErrorType',
+        stack: null,
+      };
+    } catch (e) {
+      return {
+        message: String(errorEventOrReason),
+        name: 'UnknownErrorTypeNonStringifiable',
+        stack: null,
+      };
+    }
+  }
+
+  /**
+   * Converts an array of arguments (from log/error) into a single string.
+   * Handles Error objects specially to include their message and stack.
+   * @param {Array<*>} args - Arguments passed to console methods.
+   * @return {string} A string representation of the arguments.
+   */
+  function stringifyArgs(args) {
+    return args
+      .map((arg) => {
+        if (arg instanceof Error) {
+          const {message, stack} = arg;
+          return `Error: ${message}${stack ? ('\nStack: ' + stack) : ''}`;
+        }
+        if (typeof arg === 'object' && arg !== null) {
+          try {
+            return JSON.stringify(arg);
+          } catch (error) {
+            return '[Circular Object]';
+          }
+        } else {
+          return String(arg);
+        }
+      })
+      .join(' ');
+  }
+
+  console.log = function(...args) {
+    const logString = stringifyArgs(args);
+    window.parent.postMessage({ type: 'log', message: logString }, '*');
+    originalConsoleLog.apply(console, args);
+  };
+
+  console.error = function(...args) {
+    let errorData;
+    if (args.length > 0 && args[0] instanceof Error) {
+      const err = args[0];
+      // If the first arg is an Error, capture its details.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        ...getErrorObject(err),
+        rawArgsString: stringifyArgs(args.slice(1)),
+        timestamp: new Date().toISOString(),
+      };
+    } else {
+      // If not an Error object, treat all args as a general error message.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        message: stringifyArgs(args),
+        name: 'ConsoleLoggedError',
+        stack: null,
+        timestamp: new Date().toISOString(),
+      };
+    }
+    window.parent.postMessage(errorData, '*');
+    originalConsoleError.apply(console, args);
+  };
+
+  // Listen for global unhandled synchronous errors.
+  window.addEventListener('error', function(event) {
+    const errorDetails = event.error ? getErrorObject(event.error) : {
+      message: event.message,
+      name: 'GlobalError',
+      stack: null,
+      filename: event.filename,
+      lineno: event.lineno,
+      colno: event.colno,
+    };
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'global',
+      ...errorDetails,
+      message: errorDetails.message || event.message,
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+  // Listen for unhandled promise rejections (asynchronous errors).
+  window.addEventListener('unhandledrejection', function(event) {
+    const errorDetails = getErrorObject(event.reason);
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'unhandledrejection',
+      ...errorDetails,
+      message: errorDetails.message || 'Unhandled Promise Rejection',
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中嘉寬頻 AI 客服體驗優化提案</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. 全域重設與設定 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 0;
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #f8fafc;
+        }
+
+        /* 2. 簡報投影片基礎容器 - 嚴格遵守 1280x720 規範 */
+        .slide-container {
+            background-color: #0b1329;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            display: none; /* 預設隱藏，由 JS 控制顯示 */
+            flex-direction: column;
+            height: 720px;
+            justify-content: space-between;
+            overflow: hidden;
+            padding: 45px 70px 35px 70px;
+            position: relative;
+            width: 1280px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .slide-container.active {
+            display: flex;
+        }
+
+        /* 3. 背景與裝飾線 */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            right: -150px;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(0, 122, 94, 0.12) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .slide-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #007A5E 0%, #1E3A8A 100%);
+            z-index: 1;
+        }
+
+        .slide-container > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 4. 字型大小與排版 */
+        h1 {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 52px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+        }
+
+        .slide-title-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .slide-title {
+            font-size: 30px;
+            font-weight: 700;
+            color: #ffffff;
+            border-left: 6px solid #007A5E;
+            padding-left: 15px;
+            line-height: 1.2;
+        }
+
+        .confidential-tag {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        p, li, td, th {
+            font-size: 15px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        /* 5. 模組排版定義 */
+        /* 封面 Layout */
+        .cover-layout {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .cover-brand-tag {
+            background-color: rgba(0, 122, 94, 0.2);
+            border: 1px solid rgba(0, 122, 94, 0.4);
+            color: #22c55e;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            width: fit-content;
+            margin-bottom: 25px;
+            letter-spacing: 1.5px;
+        }
+
+        .cover-subtitle {
+            font-size: 22px;
+            color: #64748b;
+            font-weight: 300;
+            margin-top: 15px;
+        }
+
+        /* 左右雙欄 */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            align-items: stretch;
+            flex-grow: 1;
+        }
+
+        /* 傳統卡片式排版 */
+        .info-card {
+            background-color: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .info-card h3 {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 i {
+            color: #007A5E;
+        }
+
+        .info-card p {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-bottom: 12px;
+        }
+
+        /* 簡報底部資訊區 */
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 12px;
+            margin-top: 15px;
+        }
+
+        .slide-footer span {
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        /* 競業矩陣表格樣式 */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+            font-size: 13px;
+        }
+
+        .matrix-table th {
+            background-color: rgba(0, 122, 94, 0.15);
+            color: #ffffff;
+            font-weight: 700;
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 2px solid rgba(0, 122, 94, 0.4);
+        }
+
+        .matrix-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+        }
+
+        .matrix-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .matrix-table .highlight-row {
+            background-color: rgba(0, 122, 94, 0.05);
+            border-left: 4px solid #007A5E;
+        }
+
+        .matrix-table .highlight-row td {
+            color: #e2e8f0;
+        }
+
+        /* 時間軸排版 */
+        .timeline-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            position: relative;
+            width: 100%;
+            margin-top: 40px;
+            padding: 0 20px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 45px;
+            left: 5%;
+            right: 5%;
+            height: 3px;
+            background: linear-gradient(90deg, #007A5E 0%, #1e3a8a 50%, #d97706 100%);
+            z-index: 1;
+        }
+
+        .timeline-node {
+            width: 28%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-badge {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-color: #0b1329;
+            border: 4px solid #007A5E;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 0 20px rgba(0, 122, 94, 0.3);
+        }
+
+        .timeline-badge .num {
+            font-size: 26px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1;
+        }
+
+        .timeline-badge .time {
+            font-size: 10px;
+            color: #007A5E;
+            font-weight: 700;
+            margin-top: 3px;
+        }
+
+        .timeline-node h3 {
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .timeline-node p {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        /* 雙引擎樹狀分流流程圖 (純 CSS 渲染) */
+        .tree-flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .flow-node {
+            background-color: #007A5E;
+            color: #ffffff;
+            border-radius: 6px;
+            padding: 6px 16px;
+            font-size: 11px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .flow-node.secondary {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: #94a3b8;
+        }
+
+        .flow-arrow-down {
+            color: #007A5E;
+            font-size: 12px;
+            margin: 5px 0;
+        }
+
+        .flow-branch-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            position: relative;
+        }
+
+        .flow-branch-label {
+            font-size: 9px;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        /* 主動預警橫向流向圖 */
+        .horizontal-flowchart {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background-color: rgba(30, 41, 59, 0.2);
+            border: 1px dashed rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        .h-flow-box {
+            background-color: #1e293b;
+            border: 1px solid rgba(0, 122, 94, 0.3);
+            border-radius: 6px;
+            padding: 6px 8px;
+            flex: 1;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .h-flow-box strong {
+            display: block;
+            font-size: 11px;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .h-flow-box span {
+            font-size: 9px;
+            color: #64748b;
+        }
+
+        .h-flow-arrow {
+            color: #007A5E;
+            font-size: 11px;
+            margin: 0 8px;
+        }
+
+        /* 左右按鈕 */
+        .nav-controls {
+            display: flex;
+            gap: 12px;
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: #f8fafc;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 16px;
+        }
+
+        .nav-btn:hover {
+            background-color: #007A5E;
+            border-color: #007A5E;
+            transform: scale(1.05);
+        }
+
+        .download-btn-container {
+            position: fixed;
+            bottom: 30px;
+            left: 40px;
+            z-index: 100;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #007A5E 0%, #0d5c48 100%);
+            border: none;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 122, 94, 0.3);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 122, 94, 0.4);
+        }
+
+        /* 漸層與特定修飾 */
+        .gradient-text-green {
+            background: linear-gradient(135deg, #22c55e 0%, #007A5E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-text-blue {
+            background: linear-gradient(135deg, #38bdf8 0%, #1e3a8a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-text-amber {
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 三大效益大數字 */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .kpi-card {
+            background-color: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+        }
+
+        .kpi-num {
+            font-family: 'Poppins', sans-serif;
+            font-size: 54px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .kpi-label {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .kpi-desc {
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        /* 通用符號與排版微調 */
+        .bullet-list-tight {
+            list-style: none;
+        }
+        .bullet-list-tight li {
+            position: relative;
+            padding-left: 18px;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 5px;
+        }
+        .bullet-list-tight li::before {
+            content: "•";
+            color: #007A5E;
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+            top: 0;
+        }
+
+        .qa-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .qa-box {
+            background-color: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 25px 50px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 650px;
+        }
+
+        /* 客服人員系統模擬介面樣式 */
+        .agent-dashboard {
+            background-color: #111a2e;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            display: grid;
+            grid-template-columns: 240px 1fr 340px;
+            gap: 16px;
+            height: 250px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-header {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 8px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .status-dot-pulse {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+
+        .db-pane {
+            background-color: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Cover (Title_Slide) -->
+    <div class="slide-container" id="slide-1" style="background-image: linear-gradient(rgba(11, 19, 41, 0.95), rgba(11, 19, 41, 0.98)), url('https://img.freepik.com/premium-photo/network-connection-fiber-optic-abstract-futuristic-network-lines-background-network-technology-abstract-concept-generate-ai-technology_39665-1464.jpg'); background-size: cover; background-position: center;">
+        <div class="cover-layout">
+            <div class="cover-brand-tag">HOME+ 中嘉寬頻 2026 AI 轉型提案</div>
+            <h1>從智能客服到智慧體驗</h1>
+            <p class="cover-subtitle">中嘉寬頻 AI 客服中心三階段優化策略藍圖</p>
+        </div>
+        <div class="slide-footer">
+            <span>Home+ 中嘉寬頻 ｜ 數位客戶服務轉型小組</span>
+            <span>P. 1 / 8</span>
+        </div>
+    </div>
+
+    <!-- Slide 2: 服務轉型路線圖 (Roadmap) -->
+    <div class="slide-container" id="slide-2">
+        <div class="slide-title-area">
+            <h2 class="slide-title">服務轉型：三階段優化路線圖</h2>
+            <span class="confidential-tag">CNS Strictly Confidential</span>
+        </div>
+        
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-node">
+                <div class="timeline-badge">
+                    <span class="num gradient-text-green">01</span>
+                    <span class="time">0 - 6 個月</span>
+                </div>
+                <h3>短期：智慧對話與流向直達</h3>
+                <p>文字小嘉精細化優化，建立高效率、具同理心的智慧對談基礎與無感跳轉。</p>
+            </div>
+
+            <div class="timeline-node">
+                <div class="timeline-badge" style="border-color: #1e3a8a; box-shadow: 0 0 20px rgba(30, 58, 138, 0.4);">
+                    <span class="num gradient-text-blue">02</span>
+                    <span class="time" style="color: #38bdf8;">6 - 18 個月</span>
+                </div>
+                <h3>中期：語音自動與人機智慧協作</h3>
+                <p>複製設備重啟優勢至語音通路，輔以後台 AI 智能摘要與續約推播智囊。</p>
+            </div>
+
+            <div class="timeline-node">
+                <div class="timeline-badge" style="border-color: #d97706; box-shadow: 0 0 20px rgba(217, 119, 6, 0.4);">
+                    <span class="num gradient-text-amber">03</span>
+                    <span class="time" style="color: #fbbf24;">18 個月以上</span>
+                </div>
+                <h3>長期：沉浸式服務與信任重塑</h3>
+                <p>推出擬真 AI 視訊客服引導，結合生物聲紋一秒快速通關與情緒優先急診通道。</p>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Home+ 中嘉寬頻 ｜ 轉型策略藍圖</span>
+            <span>P. 2 / 8</span>
+        </div>
+    </div>
+
+    <!-- Slide 3: 競業分析 (Competitor Matrix) -->
+    <div class="slide-container" id="slide-3">
+        <div class="slide-title-area">
+            <h2 class="slide-title">市場變局：2026 客服中心競爭力矩陣</h2>
+            <span class="confidential-tag">CNS Market Research</span>
+        </div>
+        
+        <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th style="width: 14%">業者</th>
+                        <th style="width: 26%">核心 AI 技術應用</th>
+                        <th style="width: 32%">用戶端前端直接體驗與優勢</th>
+                        <th style="width: 28%">主要劣勢或發展痛點</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-bold text-white">遠傳電信 (愛瑪)</td>
+                        <td>Rule+LLM 雙引擎、聲紋辨識、大數據推播</td>
+                        <td class="text-emerald-400">✦ CDP大數據主動需求推播與 AI 聲紋快速核身通關</td>
+                        <td class="text-rose-400">當話務爆量或大斷線時，容易陷入對話死迴圈</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold text-white">台灣大哥大 (小麥)</td>
+                        <td>在地繁中福爾摩沙大模型、人機智慧協作</td>
+                        <td class="text-emerald-400">✦ 口語理解極佳，真人接手時後台「大可幫」自動前情摘要</td>
+                        <td class="text-rose-400">大語言模型偶爾有幻覺，語音通路 LLM 整合稍慢</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold text-white">中華電信</td>
+                        <td>自研 AI 多模態語音、Azure 生成式 AI 知識庫</td>
+                        <td class="text-emerald-400">✦ 語音辨識與自動外撥通知技術成熟，資安合規度高</td>
+                        <td class="text-rose-400">互動介面偏傳統死板，AI 回答偏向官方條款、冷冰冰</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="font-bold text-green-400"><i class="fa-solid fa-star text-green-400 mr-1"></i>中嘉寬頻 (現況)</td>
+                        <td class="text-green-300">文字端口語語意理解、文字端一鍵重啟</td>
+                        <td class="text-emerald-400">✦ 具備基礎口語理解與文字端一戰式遠端重啟障礙排除</td>
+                        <td class="text-amber-400 font-medium">▲ 語音通路仍為傳統按鍵，且無主動式服務與彈性攔截</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold text-white">凱擘 / 大大寬頻</td>
+                        <td>後端機房系統自動化檢測、自動化表單</td>
+                        <td class="text-emerald-400">✦ 一指機房障礙檢測、自動線上報修與預約工期功能流暢</td>
+                        <td class="text-rose-400">不具備任何對話式 AI，僅依賴固定選單與留言板</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="slide-footer">
+            <span>Home+ 中嘉寬頻 ｜ 競業策略對比</span>
+            <span>P. 3 / 8</span>
+        </div>
+    </div>
+
+    <!-- Slide 4: 短期策略：一語直達與情緒通道 (Slide 6 in user's layout) -->
+    <div class="slide-container" id="slide-4">
+        <div class="slide-title-area">
+            <h2 class="slide-title">短期策略：混合雙引擎升級與主動式服務 (1/2)</h2>
+            <span class="confidential-tag">CNS Phase 1: Interactive</span>
+        </div>
+
+        <div class="two-column">
+            <!-- Left Column: 跨階層跳轉流程 -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-bolt text-emerald-400"></i> 跨階層跳轉流程</h3>
+                <p><strong>意圖直接跳轉，消除自助流程中的跳轉斷點，減少使用者點選路徑：</strong></p>
+                <p style="font-size: 11px; color: #94a3b8; line-height: 1.4; margin-bottom: 15px;">用戶只需輸入「斷網了」、「電視黑畫面」等語句，LLM 即可精準識別核心意圖，直接跳過傳統的「選單 -&gt; 選寬頻/有線 -&gt; 點選故障」多層繁瑣點選，一秒將用戶送入對應報修故障排除頁面。</p>
+                
+                <!-- Horizontal flow rendering -->
+                <div style="display: flex; align-items: center; justify-content: center; background: rgba(0,122,94,0.1); border-radius: 8px; padding: 10px; margin-top: auto;">
+                    <span style="font-size: 10px; color: #fff; background: #007A5E; padding: 3px 6px; border-radius: 4px;">用戶口語</span>
+                    <i class="fa-solid fa-chevron-right text-emerald-500 mx-2 text-xs"></i>
+                    <span style="font-size: 10px; color: #fff; background: #1e293b; border: 1px solid #334155; padding: 3px 6px; border-radius: 4px;">LLM 意圖辨識</span>
+                    <i class="fa-solid fa-chevron-right text-emerald-500 mx-2 text-xs"></i>
+                    <span style="font-size: 10px; color: #fff; background: #007A5E; padding: 3px 6px; border-radius: 4px;">一秒秒跳報修頁</span>
+                </div>
+            </div>
+
+            <!-- Right Column: 情緒感知的快速通道 -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-bell text-emerald-400"></i> 情緒感知的快速通道</h3>
+                <p><strong>情緒偵測與彈性攔截機制，在自助故障排除引導中打破傳統排隊：</strong></p>
+                <p style="font-size: 11px; color: #94a3b8; line-height: 1.4; margin-bottom: 15px;">若偵測到用戶輸入「試過重啟了沒用」、「到底修不修得好」等不耐與焦慮字眼，NLP（自然語言處理）自動中斷機器人流程，立即無縫移交轉派至高優先順位的真人席位通道。</p>
+                
+                <!-- Horizontal flow rendering -->
+                <div style="display: flex; align-items: center; justify-content: center; background: rgba(220,38,38,0.1); border-radius: 8px; padding: 10px; margin-top: auto;">
+                    <span style="font-size: 10px; color: #fff; background: #dc2626; padding: 3px 6px; border-radius: 4px;">負面情緒詞</span>
+                    <i class="fa-solid fa-chevron-right text-red-500 mx-2 text-xs"></i>
+                    <span style="font-size: 10px; color: #fff; background: #1e293b; border: 1px solid #334155; padding: 3px 6px; border-radius: 4px;">NLP 彈性攔截</span>
+                    <i class="fa-solid fa-chevron-right text-red-500 mx-2 text-xs"></i>
+                    <span style="font-size: 10px; color: #fff; background: #dc2626; padding: 3px 6px; border-radius: 4px;">真人優先通道</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Home+ 中嘉寬頻 ｜ 短期策略一：跳轉與攔截</span>
+            <span>P. 4 / 8</span>
+        </div>
+    </div>
+
+    <!-- Slide 5: 短期策略：混合雙引擎與主動服務 (Slide 7 in user's layout - matches image_55bb77.png exactly) -->
+    <div class="slide-container" id="slide-5">
+        <div class="slide-title-area">
+            <h2 class="slide-title">短期策略：混合雙引擎升級與主動式服務 (2/2)</h2>
+            <span class="confidential-tag">CNS Phase 1: Architecture &amp; Proactive</span>
+        </div>
+
+        <div class="two-column">
+            <!-- Left Column: 意圖導向的雙引擎切換 -->
+            <div class="info-card" style="padding: 15px 22px;">
+                <h3><i class="fa-solid fa-code-merge text-emerald-400"></i> 意圖導向的雙引擎切換</h3>
+                <p style="font-size: 11px; margin-bottom: 5px;"><strong>大語言模型與合規規則並行：實現「人性對話」與「商務精準」完美結合：</strong></p>
+                <p style="font-size: 10px; color: #94a3b8; line-height: 1.3; margin-bottom: 12px;">口語諮詢或使用者抱怨，由具同理心的 LLM 負責暖心承接；一旦意圖觸及「退租、合約糾紛、資費精算」，系統立刻無縫切換為 Rule-Based 引擎，輸出 100% 精確條款，兼顧人性與合規。</p>
+                
+                <!-- Flowchart Tree diagram strictly reproduced here under left card -->
+                <div class="tree-flowchart">
+                    <div class="flow-node">用戶輸入對話框</div>
+                    <div class="flow-arrow-down"><i class="fa-solid fa-arrow-down"></i></div>
+                    <div class="flow-node" style="background-color: #1e3a8a;">意圖路由器 (NLP/Router)</div>
+                    
+                    <div class="flow-branch-row">
+                        <!-- Left Branch -->
+                        <div style="display: flex; flex-direction: column; align-items: center; border-right: 1px dashed rgba(255,255,255,0.1); padding-top: 5px;">
+                            <span class="flow-branch-label">(模糊/情緒諮詢) ↙</span>
+                            <div class="flow-node secondary" style="font-size: 9px; padding: 4px 6px;">LLM 智慧引擎<br><span style="font-size: 8px; font-weight: normal; color:#64748b;">(同理回覆/理解)</span></div>
+                            <div class="flow-arrow-down" style="font-size: 8px;"><i class="fa-solid fa-arrow-down"></i></div>
+                            <div class="flow-node secondary" style="font-size: 8px; padding: 2px 5px; background: rgba(0, 122, 94, 0.1);">RAG 知識庫檢索</div>
+                        </div>
+                        <!-- Right Branch -->
+                        <div style="display: flex; flex-direction: column; align-items: center; padding-top: 5px;">
+                            <span class="flow-branch-label">↘ (資費/解約)</span>
+                            <div class="flow-node secondary" style="font-size: 9px; padding: 4px 6px;">Rule-Based 規則引擎<br><span style="font-size: 8px; font-weight: normal; color:#64748b;">(100%精準合規)</span></div>
+                            <div class="flow-arrow-down" style="font-size: 8px;"><i class="fa-solid fa-arrow-down"></i></div>
+                            <div class="flow-node secondary" style="font-size: 8px; padding: 2px 5px; background: rgba(30, 58, 138, 0.1);">API 標準條款流程</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: 大數據驅動主動預警 -->
+            <div class="info-card" style="padding: 15px 22px;">
+                <h3><i class="fa-solid fa-bell text-emerald-400"></i> 大數據驅動主動預警</h3>
+                <p style="font-size: 11px; margin-bottom: 5px;"><strong>將被動服務轉化為主動出擊：大幅降低話務進線量：</strong></p>
+                <p style="font-size: 10px; color: #94a3b8; line-height: 1.3; margin-bottom: 12px;">即時對接區域施工及網路維護大數據。當斷線受影響用戶點開客服小嘉時，小嘉不等用戶發問即主動推播：「您所在的區域正在進行機房維護，預計 16:00 恢復。」第一時間防禦，有效緩解客訴進線排隊。</p>
+                
+                <!-- Added new flowchart for Right Card bottom blank area to explain proactive care -->
+                <div style="font-size: 11px; font-weight: bold; color: #22c55e; margin-bottom: 5px; margin-top: auto; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 4px;">
+                    <i class="fa-solid fa-shield-halved"></i> 主動式防禦推播流程圖：
+                </div>
+                <div class="horizontal-flowchart">
+                    <div class="h-flow-box">
+                        <strong>1. 機房端施工</strong>
+                        <span>發佈維護工程</span>
+                    </div>
+                    <div class="h-flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="h-flow-box" style="border-color: #1e3a8a;">
+                        <strong>2. 影響用戶篩選</strong>
+                        <span>自動圈定名單</span>
+                    </div>
+                    <div class="h-flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="h-flow-box">
+                        <strong>3. 用戶開啟客服</strong>
+                        <span>自動觸及攔截</span>
+                    </div>
+                    <div class="h-flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="h-flow-box" style="background: rgba(0,122,94,0.15);">
+                        <strong>4. 預警推播彈窗</strong>
+                        <span>告知 ETA 時間</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Home+ 中嘉寬頻 ｜ 短期策略二：雙引擎與主動關懷</span>
+            <span>P. 5 / 8</span>
+        </div>
+    </div>
+
+    <!-- Slide 6: 人機協作：AI 前情提要與後台智囊輔助 (Slide 6 - matches image_571f7d.png strictly) -->
+    <div class="slide-container active" id="slide-6">
+        <div class="slide-title-area">
+            <h2 class="slide-title">人機協作：AI 前情提要與後台智囊輔助</h2>
+            <span class="confidential-tag">Strictly Private and Confidential</span>
+        </div>
+
+        <!-- Main 2-column split containing both Text and Visuals -->
+        <div class="two-column" style="flex-grow: 1; align-items: stretch;">
+            <!-- LEFT COLUMN: AI Context & Emotion -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 12px; height: 100%;">
+                <!-- Text Card -->
+                <div class="info-card" style="padding: 16px 20px; flex-grow: 0;">
+                    <h3 style="font-size: 16px;"><i class="fa-solid fa-list-check text-emerald-400"></i> AI 前情摘要與情緒預警</h3>
+                    <p style="font-size: 12px; font-weight: bold; color: #ffffff; margin-bottom: 4px;">無感轉接，拒絕重陳痛點：</p>
+                    <p style="font-size: 11px; color: #94a3b8; line-height: 1.4;">
+                        用戶由機器人轉接真人客服時，AI 實時將前置對話進行語意提煉，<strong>自動生成 30 字核心摘要</strong>投射至客服人員螢幕。同時標示用戶「情緒憤怒燈號」（紅/黃/綠），使客服在接聽第一秒即能精準安撫痛點。
+                    </p>
+                </div>
+                <!-- LEFT SCHEMATIC DIAGRAM: AI Context & Emotion Dashboard -->
+                <div style="background-color: #111a2e; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; min-height: 180px;">
+                    <div style="font-size: 11px; color: #10b981; font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                        <span><i class="fa-solid fa-comment-dots"></i> 前置對話分析 ➔ 真人接管</span>
+                        <span style="background: rgba(220, 38, 38, 0.2); color: #f87171; font-size: 9px; padding: 1px 6px; border-radius: 4px;"><span class="status-dot-pulse" style="background-color: #f87171; box-shadow: 0 0 6px #f87171;"></span> 情緒預警：焦躁憤怒 (紅燈 🔴)</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 6px; margin: 8px 0;">
+                        <!-- Mock dialogue -->
+                        <div style="display: flex; align-items: flex-start; gap: 6px;">
+                            <span style="font-size: 8px; background: rgba(255,255,255,0.1); padding: 1px 4px; border-radius: 4px; color: #94a3b8; white-space: nowrap;">用戶輸入</span>
+                            <p style="font-size: 10px; color: #cbd5e1; margin: 0; font-style: italic;">「網路斷很久了，我試過重啟數據機還是沒用！趕快叫人來修好不好！」</p>
+                        </div>
+                        <div style="text-align: center; color: #10b981; font-size: 10px; margin: 2px 0;"><i class="fa-solid fa-arrow-down-long"></i> AI 語意提煉</div>
+                        <!-- Mock AI output -->
+                        <div style="background: rgba(16, 185, 129, 0.05); border: 1px dashed rgba(16, 185, 129, 0.3); border-radius: 6px; padding: 8px;">
+                            <div style="font-size: 9px; color: #10b981; font-weight: bold; margin-bottom: 2px;"><i class="fa-solid fa-wand-magic-sparkles"></i> 30 字核心摘要提示：</div>
+                            <p style="font-size: 10px; color: #e2e8f0; line-height: 1.3; margin: 0;">
+                                "用戶連線異常斷線，自行重啟設備無效。情緒高度焦躁，強烈要求約工程師今天到府維護。"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Knowledge Co-Pilot -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 12px; height: 100%;">
+                <!-- Text Card -->
+                <div class="info-card" style="padding: 16px 20px; flex-grow: 0;">
+                    <h3 style="font-size: 16px;"><i class="fa-solid fa-brain text-emerald-400"></i> 後台智囊 (Knowledge Co-Pilot)</h3>
+                    <p style="font-size: 12px; font-weight: bold; color: #ffffff; margin-bottom: 4px;">通話中實時智慧推薦：</p>
+                    <p style="font-size: 11px; color: #94a3b8; line-height: 1.4;">
+                        當客服人員與用戶在通話時，後台 AI 即時聆聽對話語意。若用戶提到「想續約」或「考慮加購電視頻道」，後台螢幕會<strong>自動彈出最適合行銷方案與推薦話術指引</strong>，可有效縮短平均通話處理時間 (AHT) 25%。
+                    </p>
+                </div>
+                <!-- RIGHT SCHEMATIC DIAGRAM: Knowledge Co-Pilot Recommendation System -->
+                <div style="background-color: #111a2e; border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; min-height: 180px;">
+                    <div style="font-size: 11px; color: #38bdf8; font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                        <span><i class="fa-solid fa-microphone-lines"></i> 實時通話音頻監聽</span>
+                        <span style="font-size: 9px; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 1px 6px; border-radius: 4px; display: flex; align-items: center; gap: 4px;"><span class="status-dot-pulse" style="background-color: #38bdf8; box-shadow: 0 0 6px #38bdf8;"></span> 監聽中 (AHT: 01:25)</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 6px; margin: 8px 0;">
+                        <!-- Waveform / Speech Bubble -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.02); padding: 4px 8px; border-radius: 6px;">
+                            <p style="font-size: 10px; color: #cbd5e1; margin: 0; width: 70%; line-height: 1.25;">
+                                "如果我要續約 1G 網路，聽說有送 Wi-Fi MESH 方案..."
+                            </p>
+                            <!-- Visual soundwave (small vertical bars representing speech audio) -->
+                            <div style="display: flex; align-items: center; gap: 2px;">
+                                <div style="width: 2px; height: 12px; background: #38bdf8; border-radius: 1px;"></div>
+                                <div style="width: 2px; height: 18px; background: #38bdf8; border-radius: 1px;"></div>
+                                <div style="width: 2px; height: 8px; background: #38bdf8; border-radius: 1px;"></div>
+                                <div style="width: 2px; height: 15px; background: #38bdf8; border-radius: 1px;"></div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; color: #38bdf8; font-size: 10px; margin: 2px 0;"><i class="fa-solid fa-arrow-down-long"></i> 智囊實時推薦</div>
+                        <!-- Mock Recommendation bubble -->
+                        <div style="background: rgba(56, 189, 248, 0.05); border: 1px dashed rgba(56, 189, 248, 0.3); border-radius: 6px; padding: 8px; display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                            <div style="flex-grow: 1;">
+                                <div style="font-size: 9px; color: #38bdf8; font-weight: bold; margin-bottom: 2px;"><i class="fa-solid fa-lightbulb"></i> 推薦方案：2026年Q2 1G智慧特惠組</div>
+                                <p style="font-size: 9px; color: #e2e8f0; line-height: 1.3; margin: 0;">
+                                    「每月$799/月(享30個月合約)，免費升級租用Wi-Fi 6 MESH分享器...」
+                                </p>
+                            </div>
+                            <button style="background: #38bdf8; color: #0b1329; border: none; font-size: 8px; font-weight: bold; padding: 4px 6px; border-radius: 4px; cursor: pointer; white-space: nowrap;">
+                                一鍵帶入方案
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Home+ 中嘉寬頻 ｜ 中期策略：前情提要與智慧輔助</span>
+            <span>P. 6 / 8</span>
+        </div>
+    </div>
+
+    <!-- Slide 7: 長期策略 (Phase 3) -->
+    <div class="slide-container" id="slide-7">
+        <div class="slide-title-area">
+            <h2 class="slide-title">長期策略：沉浸式服務與生物識別體驗</h2>
+            <span class="confidential-tag">CNS Phase 3: Ultimate Customer Experience</span>
+        </div>
+
+        <div class="two-column">
+            <!-- Left Column -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-video text-emerald-400"></i> 多模態「擬真虛擬助理小嘉」</h3>
+                <p><strong>看得見的專業，聽得到的溫度：將虛擬人技術客服前端化：</strong></p>
+                <ul class="bullet-list-tight" style="margin-bottom: 15px;">
+                    <li>跨界融合中嘉電視台自研高知名度之 <strong class="text-white">"AI 主持人小嘉" 3D 虛擬人技術</strong>。</li>
+                    <li>用戶點擊客服 App 即可與 3D 虛擬小嘉對談。當有線路設定疑問時，小嘉帶著微笑與自然的肢體動作，<strong class="text-emerald-400">直接於視訊中動態展示數據機後面哪條線該插在正確插槽</strong>，一舉攻克長輩看不懂、聽不清的報修痛點。</li>
+                </ul>
+                <div style="text-align: center; margin-top: auto;">
+                    <img src="https://media.easy-peasy.ai/427a9e3d-029d-4cc5-8a76-5f8b24aa6bcb/3d7e1f5f-5e73-4dbb-a0b4-6beb6dfddba8_medium.webp" alt="3D Humanoid Virtual Assistant represent Xiao Jia visual customer service" style="width: 100%; max-height: 110px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); transform: scaleY(1.05);">
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-fingerprint text-emerald-400"></i> AI 聲紋快速通關與情緒優先權</h3>
+                <p><strong>打破繁瑣流程確認，打造極致尊榮服務體驗：</strong></p>
+                <div style="background-color: rgba(30, 41, 59, 0.4); border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+                    <h4 style="font-size: 12px; color: #fff; font-weight: bold; margin-bottom: 5px;"><i class="fa-solid fa-id-card-clip text-emerald-400 mr-1"></i> AI 聲份證：一語核身免報個資</h4>
+                    <p style="font-size: 11px; color: #94a3b8; line-height: 1.4; margin: 0;">導入生物聲紋識別技術。用戶打進客服講出第一句「喂，我網路好像壞了」，AI 已透過聲特徵完成核身，免除核對生日與發票等漫長個資確認手續，核身縮短至 1 秒內。</p>
+                </div>
+                <div style="background-color: rgba(30, 41, 59, 0.4); border-radius: 8px; padding: 12px; margin-top: auto;">
+                    <h4 style="font-size: 12px; color: #fff; font-weight: bold; margin-bottom: 5px;"><i class="fa-solid fa-truck-medical text-emerald-400 mr-1"></i> 憤怒用戶「急診室綠色通道」</h4>
+                    <p style="font-size: 11px; color: #94a3b8; line-height: 1.4; margin: 0;">語音 AI 實時監控通話。若從用戶語調、音量與用詞中智能偵測用戶處於極度憤怒焦慮狀態時，立刻中斷機器人傳統排隊，直接插隊引導轉接至高階主管座席安撫挽回。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Home+ 中嘉寬頻 ｜ 長期策略：多模態與聲紋</span>
+            <span>P. 7 / 8</span>
+        </div>
+    </div>
+
+    <!-- Slide 8: 結論與效益 (Value) -->
+    <div class="slide-container" id="slide-8">
+        <div class="slide-title-area">
+            <h2 class="slide-title">落實藍圖：中嘉寬頻 AI 轉型綜合效益</h2>
+            <span class="confidential-tag">CNS Strictly Confidential</span>
+        </div>
+        
+        <div class="qa-container">
+            <p style="font-size: 16px; color: #94a3b8; margin-bottom: 5px;">客服中心從「成本中心」升級轉型為「數據智慧中心」</p>
+            
+            <div class="kpi-row">
+                <div class="kpi-card" style="border-top: 4px solid #007A5E;">
+                    <div class="kpi-num gradient-text-green">-30%</div>
+                    <div class="kpi-label">營運成本優化</div>
+                    <div class="kpi-desc">文字與語音雙引擎全自助分流簡單重複話務</div>
+                </div>
+                <div class="kpi-card" style="border-top: 4px solid #1e3a8a;">
+                    <div class="kpi-num gradient-text-blue">+25%</div>
+                    <div class="kpi-label">真人轉接效率</div>
+                    <div class="kpi-desc">後台 AI 前情提要與話術智囊縮短 AHT 時間</div>
+                </div>
+                <div class="kpi-card" style="border-top: 4px solid #d97706;">
+                    <div class="kpi-num gradient-text-amber">95%+</div>
+                    <div class="kpi-label">客戶滿意度</div>
+                    <div class="kpi-desc">多模態視訊指引、快速核身打造極致尊榮服務</div>
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <p style="font-weight: 700; color: #22c55e; font-size: 15px; margin-bottom: 5px;">中嘉寬頻：AI 數位生活服務整合者</p>
+                <p style="font-size: 12px; color: #64748b;">我們不跟電信大廠拼天價自研大模型，而是靈活整合開源 LLM 與雲端服務，發揮有線電視虛擬助理與後端自動化優勢，成為寬頻業 AI 體驗領頭羊！</p>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Home+ 中嘉寬頻 © 2026 版權所有 ｜ 免費服務專線：412-8811</span>
+            <span>P. 8 / 8</span>
+        </div>
+    </div>
+
+    <!-- 1. 下載簡報按鈕 (在左下角，點擊可直接下載本 html 檔案) -->
+    <div class="download-btn-container">
+        <button id="download-btn" class="download-btn">
+            <i class="fa-solid fa-file-powerpoint"></i> 下載中嘉寬頻 AI 客服體驗優化提案.pptx
+        </button>
+    </div>
+
+    <!-- 2. 控制前後頁的導航按鈕 -->
+    <div class="nav-controls">
+        <button id="prev-btn" class="nav-btn"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="next-btn" class="nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 8;
+
+        function showSlide(slideIndex) {
+            if (slideIndex < 1 || slideIndex > totalSlides) return;
+            
+            // 隱藏所有投影片
+            document.querySelectorAll('.slide-container').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // 顯示當前投影片
+            document.getElementById(`slide-${slideIndex}`).classList.add('active');
+            currentSlide = slideIndex;
+        }
+
+        // 按鈕點擊事件
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+
+        // 鍵盤左右方向鍵與空白鍵控制
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space') {
+                e.preventDefault();
+                showSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                showSlide(currentSlide - 1);
+            }
+        });
+
+        // 下載簡報功能實作 (點擊時自動將整份網頁簡報封裝並下載，檔名完美對應中嘉寬頻 AI 客服體驗優化提案.pptx.html)
+        document.getElementById('download-btn').addEventListener('click', () => {
+            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '中嘉寬頻 AI 客服體驗優化提案.pptx.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+
+</body></html>
